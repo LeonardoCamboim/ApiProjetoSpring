@@ -15,7 +15,7 @@ import org.apache.commons.lang3.ObjectUtils;
 @AllArgsConstructor
 @Getter
 @EqualsAndHashCode(of = "id")
-public class Cliente {
+public class Cliente implements Comparable<Cliente>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -58,5 +58,11 @@ public class Cliente {
 
     public void excluir() {
         this.ativo = false;
+    }
+
+
+    @Override
+    public int compareTo(Cliente o) {
+        return this.nome.compareTo(o.getNome());
     }
 }
