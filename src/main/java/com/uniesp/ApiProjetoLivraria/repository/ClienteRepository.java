@@ -9,5 +9,8 @@ import java.util.Optional;
 
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
     Page<Cliente> findAllByAtivoTrue(Pageable page);
+    Page<Cliente> findByNome(String nome, Pageable pageable);
+    Page<Cliente> findByCpf(String cpf, Pageable pageable);
+
 
 }

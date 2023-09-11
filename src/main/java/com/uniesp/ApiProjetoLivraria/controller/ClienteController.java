@@ -5,6 +5,7 @@ import com.uniesp.ApiProjetoLivraria.dto.DadosCadastroCliente;
 import com.uniesp.ApiProjetoLivraria.dto.DadosListagemCliente;
 import com.uniesp.ApiProjetoLivraria.entity.Cliente;
 import com.uniesp.ApiProjetoLivraria.repository.ClienteRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,7 +24,7 @@ public class ClienteController {
 
     @PostMapping
     @Transactional
-    public void cadastrar(@RequestBody DadosCadastroCliente dados) {
+    public void cadastrar(@RequestBody @Valid DadosCadastroCliente dados) {
         clienteRepository.save(new Cliente(dados));
     }
 
@@ -40,6 +41,13 @@ public class ClienteController {
     public void atualizar(@RequestBody DadosAtualizacaoCliente dados) {
         var cliente = clienteRepository.getReferenceById(dados.id());
         cliente.atualizarInformacoes(dados);
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void excluir(@PathVariable Long id) {
+        var cliente = clienteRepository.getReferenceById(id);
+        cliente.excluir();
     }
 
 

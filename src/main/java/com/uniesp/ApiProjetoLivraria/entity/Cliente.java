@@ -55,4 +55,8 @@ public class Cliente {
         }
 
     }
+
+    public void excluir() {
+        this.ativo = false;
+    }
 }

@@ -6,6 +6,7 @@ public enum Genero {
     TERROR,
     ACAO,
     DRAMA,
+    ROMANCE,
     POLICIAL;
 }
 
