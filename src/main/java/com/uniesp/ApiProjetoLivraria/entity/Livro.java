@@ -1,5 +1,6 @@
 package com.uniesp.ApiProjetoLivraria.entity;
 
+import com.uniesp.ApiProjetoLivraria.dto.DadosAtualizacaoLivro;
 import com.uniesp.ApiProjetoLivraria.dto.DadosCadastroLivro;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -34,6 +35,30 @@ public class Livro {
         this.descricao = dados.descricao();
         this.genero = dados.genero();
         this.disponibilidade = true;
+
+    }
+
+    public void atualizar(DadosAtualizacaoLivro dados) {
+        if (dados.titulo() != null) {
+            this.titulo = dados.titulo();
+        }
+        if (dados.autor() != null) {
+            this.autor = dados.autor();
+        }
+        if (dados.ano() != null) {
+            this.ano = dados.ano();
+        }
+        if (dados.descricao() != null) {
+            this.descricao = dados.descricao();
+        }
+        if (dados.genero() != null) {
+            this.genero = dados.genero();
+        }
+
+    }
+
+    public void excluir() {
+        this.disponibilidade = false;
 
     }
 }

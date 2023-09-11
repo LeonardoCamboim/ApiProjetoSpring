@@ -1,10 +1,7 @@
 package com.uniesp.ApiProjetoLivraria.controller;
 
 
-import com.uniesp.ApiProjetoLivraria.dto.DadosCadastroCliente;
-import com.uniesp.ApiProjetoLivraria.dto.DadosCadastroLivro;
-import com.uniesp.ApiProjetoLivraria.dto.DadosListagemCliente;
-import com.uniesp.ApiProjetoLivraria.dto.DadosListagemLivro;
+import com.uniesp.ApiProjetoLivraria.dto.*;
 import com.uniesp.ApiProjetoLivraria.entity.Livro;
 import com.uniesp.ApiProjetoLivraria.repository.LivroRepository;
 import jakarta.validation.Valid;
@@ -34,6 +31,19 @@ public class LivroController {
         return livroRepository.findAllByDisponibilidadeTrue(pageable);
     }
 
+    @PutMapping
+    @Transactional
+    public void atualizar(@RequestBody @Valid DadosAtualizacaoLivro dados) {
+        var livro = livroRepository.getReferenceById(dados.id());
+        livro.atualizar(dados);
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void excluir(@PathVariable Long id) {
+        var livro = livroRepository.getReferenceById(id);
+        livro.excluir();
+    }
 
 
 
